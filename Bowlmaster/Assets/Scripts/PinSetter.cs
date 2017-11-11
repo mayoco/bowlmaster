@@ -8,7 +8,7 @@ public class PinSetter : MonoBehaviour {
 
 	public Object newPins;
 
-	private ActionMaster actionMaster=new ActionMaster(); 
+//	private ActionMaster actionMaster=new ActionMaster(); 
 //	private float lastChangeTime;
 //	private bool ballEnteredBox=false;
 //	private Ball ball;

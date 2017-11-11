@@ -36,7 +36,7 @@ public class BallDragLaunch : MonoBehaviour {
 		endTime = Time.time;
 
 		float dragDuration = endTime - startTime;
-		float launchSpeedX = (dragEnd.x - dragStart.x) / (2*dragDuration);
+		float launchSpeedX = 0;//(dragEnd.x - dragStart.x) / (2*dragDuration);
 		float launchSpeedZ = (dragEnd.y - dragStart.y) / dragDuration;
 
 		launchSpeedZ = launchSpeedZ > 900 ? 900 : launchSpeedZ;//set max speed
