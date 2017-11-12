@@ -8,6 +8,7 @@ public class BallDragLaunch : MonoBehaviour {
 	private Vector3 dragStart,dragEnd;
 	private float startTime,endTime;
 	private Ball ball;
+	public GameObject arrowbutton;
 
 
 	// Use this for initialization
@@ -36,7 +37,7 @@ public class BallDragLaunch : MonoBehaviour {
 		endTime = Time.time;
 
 		float dragDuration = endTime - startTime;
-		float launchSpeedX = 0;//(dragEnd.x - dragStart.x) / (2*dragDuration);
+		float launchSpeedX = (dragEnd.x - dragStart.x) / (2*dragDuration);
 		float launchSpeedZ = (dragEnd.y - dragStart.y) / dragDuration;
 
 		launchSpeedZ = launchSpeedZ > 900 ? 900 : launchSpeedZ;//set max speed
@@ -50,6 +51,6 @@ public class BallDragLaunch : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+		arrowbutton.SetActive (!ball.inPlay);
 	}
 }

@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 public class GameManager : MonoBehaviour {
 	
-	private List<int> rolls=new List<int>();
-
+	public List<int> rolls=new List<int>();
 	private PinSetter pinSetter;
 	private Ball ball;
 	private ScoreDisplay scoreDisplay;
@@ -22,11 +22,24 @@ public class GameManager : MonoBehaviour {
 		scoreDisplay.FillFrames (ScoreMaster.ScoreCumulative(rolls));
 
 		pinSetter.PerformAction (ActionMaster.NextAction(rolls));
+		//Debug
+		StringBuilder builder = new StringBuilder();
+
+		for (int i = 0; i < rolls.Count; i++) {
+			builder.Append(rolls[i].ToString()).Append(" ");
+		}
+		Debug.Log("after perform nextAction:"+builder);
+		//Debug until this line
+
+
 
 		ball.Reset ();
 
 	}
-
+	public void ResetScore(){
+		rolls=new List<int>();
+		scoreDisplay.Clean ();
+	}
 	// Update is called once per frame
 	void Update () {
 		

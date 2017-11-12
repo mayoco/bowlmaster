@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PinSetter : MonoBehaviour {
 //	public int lastStandingCount = -1;
-
+	public GameObject playagainbutton;
 	public Object newPins;
 
 //	private ActionMaster actionMaster=new ActionMaster(); 
@@ -15,7 +15,7 @@ public class PinSetter : MonoBehaviour {
 //	private int lastSettledCount = 10;
 	private Animator animator;
 	private PinCounter pinCounter;
-
+	private ScoreDisplay scoreDisplay;
 	// Use this for initialization
 	void Start () {
 //		ball = GameObject.FindObjectOfType<Ball> ();
@@ -30,7 +30,7 @@ public class PinSetter : MonoBehaviour {
 
 	public void RaisePins(){
 	//raise standing ins only by distanceToRaise
-		Debug.Log("Raise Pins.");
+		//Debug.Log("Raise Pins.");
 		var pins = GameObject.FindObjectsOfType<Pin> ();
 		foreach (var pin in pins) {
 				pin.RaiseIfStanding ();
@@ -38,7 +38,7 @@ public class PinSetter : MonoBehaviour {
 	}
 
 	public void LowerPins(){
-		Debug.Log("Lower Pins.");
+		//Debug.Log("Lower Pins.");
 		var pins = GameObject.FindObjectsOfType<Pin> ();
 		foreach (var pin in pins) {
 				pin.Lower ();
@@ -48,7 +48,7 @@ public class PinSetter : MonoBehaviour {
 //		ball.Reset ();
 //	}
 	public void RenewPins(){
-		Debug.Log("Renew Pins.");
+		//Debug.Log("Renew Pins.");
 		Object.Instantiate (newPins,new Vector3(0,0,1829),Quaternion.identity);
 		pinCounter.Reset ();
 	}
@@ -117,7 +117,8 @@ public class PinSetter : MonoBehaviour {
 		}else if (action == ActionMaster.Action.Reset) {
 			animator.SetTrigger ("resetTrigger");
 		}else if (action == ActionMaster.Action.EndGame) {
-			throw new UnityException ("handle end game.");
+			playagainbutton.SetActive(true);
+			Debug.Log ("handle end game.");
 		}
 	}
 }

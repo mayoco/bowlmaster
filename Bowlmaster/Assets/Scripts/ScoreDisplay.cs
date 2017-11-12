@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text;
 
 public class ScoreDisplay : MonoBehaviour {
 
@@ -18,7 +19,7 @@ public class ScoreDisplay : MonoBehaviour {
 
 	public void FillRolls(List<int> rolls){
 		string scoresString = FormatRolls (rolls);
-		for (int i = 0; i < rolls.Count; i++) {
+		for (int i = 0; i < scoresString.Length; i++) {
 			rollTexts [i].text = scoresString [i].ToString ();
 		} 
 	}
@@ -27,8 +28,19 @@ public class ScoreDisplay : MonoBehaviour {
 			frameTexts[i].text = frames [i].ToString ();
 		}
 	}
-
+	public void Clean(){
+		foreach(var roll in rollTexts)roll.text=" ";
+		foreach (var frame in frameTexts)frame.text = "";
+	}
 	public static string FormatRolls(List<int> rolls){
+		StringBuilder builder = new StringBuilder();
+
+		for (int i = 0; i < rolls.Count; i++) {
+			builder.Append(rolls[i].ToString()).Append(" ");
+		}
+
+		Debug.Log("display input:"+builder);
+
 		string output = "";
 		for (int i = 0; i < rolls.Count; i++) {
 			int box = output.Length + 1;
@@ -45,7 +57,7 @@ public class ScoreDisplay : MonoBehaviour {
 				output += rolls [i].ToString ();
 			}
 		}
-
+		Debug.Log("display output:"+output);
 		return output;
 	}
 
